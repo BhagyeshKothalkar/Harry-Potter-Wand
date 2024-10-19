@@ -1,5 +1,6 @@
 import cv2 as cv
 import numpy as np
+import time
 
 points = np.empty((0, 2), dtype=np.uint8)
 def empty(arg):
@@ -57,6 +58,12 @@ while True:
     x, y = getContours(mask)
 
     points = np.vstack((points, np.array([x, y])))
+    if(points.shape[0]>100):
+        if np.linalg.norm(points[-1]- points[-100]) < 200:
+            print("End")
+            break
+
+
 
     for point in points:
         cv.circle(imgnew, point, 10, (255, 0, 0), 3)
