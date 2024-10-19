@@ -1,7 +1,7 @@
 import cv2 as cv
 import numpy as np
 
-points = np.empty((0, 3))
+points = np.empty((0, 2), dtype=np.uint8)
 def empty(arg):
     pass
 #cv.namedWindow("Trackbars")
@@ -34,8 +34,8 @@ def getContours(img):
 while True: 
     
     success, img = cap.read()
-    img = cv2.circle(img, (140, 70), 6, (0, 255, 0), 2)
-    img = cv2.circle(img, (190, 140), 6, (0, 0, 255), 2)
+    img = cv.circle(img, (140, 70), 6, (0, 255, 0), 2)
+    img = cv.circle(img, (190, 140), 6, (0, 0, 255), 2)
     imgHSV = cv.cvtColor(img, cv.COLOR_BGR2HSV)
     # h_min = cv.getTrackbarPos("Hue Min", "Trackbars")
     # h_max = cv.getTrackbarPos("Hue Max", "Trackbars")
@@ -56,7 +56,7 @@ while True:
     imgnew = cv.cvtColor(img_blur,cv.COLOR_GRAY2BGR)
     x, y = getContours(mask)
 
-    points = np.vstack(points, np.array([x, y]))
+    points = np.vstack((points, np.array([x, y])))
 
     for point in points:
         cv.circle(imgnew, point, 10, (255, 0, 0), 3)
