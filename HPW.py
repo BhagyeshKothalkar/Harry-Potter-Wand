@@ -16,7 +16,7 @@ def empty(arg):
 cap = cv.VideoCapture(0)
 def getContours(img):
     contours, hierarchy = cv.findContours(img, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
-    x0, y0, w0 = 0, 0, 0
+    x, y, w, h = 0, 0, 0, 0
     for cnt in contours:
         area = cv.contourArea(cnt)
         if area > 500:
@@ -25,12 +25,9 @@ def getContours(img):
             approx = cv.approxPolyDP(cnt, 0.02*peri, True)
             print(area, peri, len(approx))
             x, y, w, h = cv.boundingRect(approx)
-            x0 = x
-            y0 = y
-            w0 = w
             print(x, y, w)
             cv.rectangle(imgnew, (x, y), (x + w, y + h), (255, 0, 255), 5)
-    return x0 + w0//2, y0
+    return x + w//2, y
 
 
 
