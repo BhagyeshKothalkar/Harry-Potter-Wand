@@ -35,6 +35,8 @@ def getContours(img):
 while True: 
     
     success, img = cap.read()
+    img = cv2.circle(img, (140, 70), 6, (0, 255, 0), 2)
+    img = cv2.circle(img, (190, 140), 6, (0, 0, 255), 2)
     imgHSV = cv.cvtColor(img, cv.COLOR_BGR2HSV)
     # h_min = cv.getTrackbarPos("Hue Min", "Trackbars")
     # h_max = cv.getTrackbarPos("Hue Max", "Trackbars")
@@ -50,9 +52,9 @@ while True:
     mask = cv.inRange(imgHSV, lower, upper)
 
     img_blur = cv.GaussianBlur(mask, (7, 7), 0)
-    imgcanny = cv.Canny(img_blur, 50, 250)
-    imgdial = cv.dilate(imgcanny,np.ones((3,3)))
-    imgnew = cv.cvtColor(imgdial,cv.COLOR_GRAY2BGR)
+    #imgcanny = cv.Canny(img_blur, 50, 250)
+    #imgdial = cv.dilate(imgcanny,np.ones((3,3)))
+    imgnew = cv.cvtColor(img_blur,cv.COLOR_GRAY2BGR)
     x, y = getContours(mask)
 
     points = np.vstack(points, np.array([x, y]))
