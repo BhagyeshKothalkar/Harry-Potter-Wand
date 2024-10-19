@@ -13,7 +13,7 @@ def empty(arg):
 # cv.createTrackbar("Val Min", "Trackbars", 0, 255,empty)
 # cv.createTrackbar("Val Max", "Trackbars", 0, 255,empty)
 
-cap = cv.VideoCapture(1)
+cap = cv.VideoCapture(0)
 def getContours(img):
     contours, hierarchy = cv.findContours(img, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
     x0, y0 = 0, 0
