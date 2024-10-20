@@ -2,6 +2,7 @@ import cv2 as cv
 import numpy as np
 import time
 
+#drawing = False
 points = np.empty((0, 2), dtype=np.uint8)
 def empty(arg):
     pass
@@ -63,8 +64,24 @@ while True:
             print("End")
             break
 
-
-
+   # We can start drawing once the contour coincided with the start circle ( this coincidence can be vhcked using the function cv2.pointPolygonTest(contour, start_circle_center,False)>= 0)
+    #And end the drawing once the contour is in range of the end cirlce using the same function.
+    #The function returns a positive value or zero if the center of circle is on or inside the contour.
+    #snippet:
+      #get contours using cv2.findContours and the use the above function to start drawing 
+      #then once the contours coincides with end cirlce center break the loop
+   #while True: 
+     #success, frame = cap.read()
+     #cv2.circle() start circle
+     #cv2.circle() end circle
+     #contours=_________
+     #if cv2.pointPolygonTest:
+        #loop for drawing circle
+        #if pointPolygonTest with end circle then break;
+    #NOW THE PROBLEM TO BE FIGURED OUT IS THE ORDER OF POSTIONING THESE LOOPS
+     
+        
+    
     for point in points:
         cv.circle(imgnew, point, 10, (255, 0, 0), 3)
 
